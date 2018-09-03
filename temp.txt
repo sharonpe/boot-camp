@@ -1,0 +1,187 @@
+
+
+'Generalization-Specialization': {
+      'opm.Object': `<T2> is a <T1>.`,
+      'opm.Process': `<T2> is <T1>.`},
+
+
+if(['Generalization-Specialization'].indexOf(linkType)>-1){
+        template = oplTemplates['structural_link'][linkType][source.attributes.type];
+      }
+      else{
+        template = oplTemplates['structural_link'][linkType];
+      }
+
+
+opd tree view
+
+{name: 'OPD Tree View Settings',tooltip:'OPD Tree View Names', priv: 'auth', outlet: 'OPD-Tree-View'}
+
+
+
+
+isFeature(initRappid){
+    if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(this.id),this))
+      return true;
+    if(initRappid.opmModel.getVisualElementById(this.id).refineable){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineable;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee)){
+        return true;
+      }
+    }
+    if(initRappid.opmModel.getVisualElementById(this.id).refineeInzooming){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineeInzooming;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee))
+        return true;
+    }
+    if(initRappid.opmModel.getVisualElementById(this.id).refineeUnfolding){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineeUnfolding;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee))
+        return true;
+    }
+    return false;
+  }
+  isVisualFeature(opd,thing){
+    let structuralLinks=opd.getThingStructuralLinks(thing.id);
+    for(let i = 0; i < structuralLinks.length; i++ ){
+      if(structuralLinks[i].logicalElement.linkType ===12){
+        if(structuralLinks[i].targetVisualElements[0].targetVisualElement.id === thing.id)
+          return true;
+      }
+    }
+    return false;
+  }
+
+
+'Generalization-Specialization': {
+      'opm.Object': `<T2> is a <T1>.`,
+      'opm.Process': `<T2> is <T1>.`},
+
+    'Generalization-Specialization': `<P2> is <P1>.`,
+
+if(['Generalization-Specialization'].indexOf(linkType)>-1){
+        template = oplTemplates['structural_link'][linkType][source.attributes.type];
+      }
+      else{
+        template = oplTemplates['structural_link'][linkType];
+      }
+
+
+
+
+popupContentDbClick() {
+    let options =super.popupContentDbClick();
+    options.splice(1,1);
+    return options;
+  }
+
+
+
+element.set('labels', [{ position: 0.9,  attrs: { text: {
+            text: (this.$('.trgt').val()!==undefined)&&(/\S/.test(this.$('.trgt').val())) ? this.$('.trgt').val().toLowerCase().trim() : undefined //console.log() // alert('Field must have value')
+      }}},
+        { position: 0.1, attrs: { text: {
+              text: (this.$('.srce').val()!==undefined)&&(/\S/.test(this.$('.srce').val())) ? this.$('.srce').val().toLowerCase().trim() : undefined //console.log() // alert('Field must have value')
+            }}},
+
+
+
+          options.treeViewService.createNewNode(opd.id, opd.parendId);
+        const targetDrawnElement = graph.getCells().filter(element => (element.id === targetVisualElement.id))[0];
+
+
+
+refinable is not undefined - the first case (regular and then zoom in)
+refineinzooming is not undefined - the second case (zoom in and then link)
+isFeature(initRappid){
+    if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(this.id),this))
+      return true;
+    if(initRappid.opmModel.getVisualElementById(this.id).refineable){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineable;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee)){
+        return true;
+      }
+    }
+    if(initRappid.opmModel.getVisualElementById(this.id).refineeInzooming){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineeInzooming;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee))
+        return true;
+    }
+    if(initRappid.opmModel.getVisualElementById(this.id).refineeUnfolding){
+      let refinee=initRappid.opmModel.getVisualElementById(this.id).refineeUnfolding;
+      if(this.isVisualFeature(initRappid.opmModel.getOpdByThingId(refinee.id),refinee))
+        return true;
+    }
+    return false;
+  }
+  isVisualFeature(opd,thing){
+    let structuralLinks=opd.getThingStructuralLinks(thing.id);
+    for(let i = 0; i < structuralLinks.length; i++ ){
+      if(structuralLinks[i].logicalElement.linkType ===12){
+        if(structuralLinks[i].targetVisualElements[0].targetVisualElement.id === thing.id)
+          return true;
+      }
+    }
+    return false;
+  }
+
+essence - feature!!
+
+if(thisThing.isFeature(initRappid)){
+        validationAlert('Feature cannot be physical.');
+        return;
+      }
+
+
+
+
+https://groups.google.com/forum/#!msg/jointjs/bR5kBCERzdU/OW-esjswCAAJ	
+
+
+
+
+ getUserOrg(uid?): any {
+    // this.getUserOrgInterface(uid);
+    if (this.isAnon) {
+      return environment.Defaults.Organization;
+    }
+    if ((! uid) && (! this.afAuth.auth.currentUser.uid)) {
+      return null;
+    }
+    if (((! uid) || (uid === this.afAuth.auth.currentUser.uid)) && (this.userOrg)) {
+      return this.userOrg;
+    }else {
+      //console.log("scanning all orgs for user");
+      const a = this.orgService.getOrganizations().then(orgS => {
+        orgS.forEach((org) => {
+
+          this.orgService.getOrganizationMembers(org)
+            .then((Members) => {
+              let currentUid = uid ? uid : this.afAuth.auth.currentUser.uid;
+              for (var i = 0, len = Members.length; i < len; i++) {
+                let uid = Members[i];
+                if (uid === currentUid) {
+                  //console.log("get user org found a match:",org);
+                  console.log(org);
+                  this.userOrg = org;
+                  return org;
+                }
+              }
+            });
+            if (this.userOrg)
+              return;
+        });
+
+      });
+      a.then(() => {
+        let ref = this.afDB.database.ref(`/${this.userOrg}`).child('Users').child(this.afAuth.auth.currentUser.uid);
+        return ref.once('value').then((snapshot) => {
+          //OPDHierarchyComponent.addDescriptionToOPDTree = snapshot.val().SDNames;
+          //this.sdnames = snapshot.val().SD ? snapshot.val() : false;
+          this.sdnames = snapshot.val() ? (snapshot.val()['SDNames']) : true;
+          //alert(this.sdnames);
+        });
+      });
+      return a;
+    }
+  }
